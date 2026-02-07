@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+        body {
+            background-color:#FFE8EC;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            background-image: 
+                url(/images/hearts.png),
+                url(/images/hearts.png),
+                url(/images/hearts.png),
+                url(/images/hearts.png),
+                url(/images/hearts.png),
+                url(/images/hearts.png),
+                url(/images/hearts.png),
+                url(/images/hearts.png);
+            background-repeat: no-repeat;
+            background-position: 
+                8% 15%,   
+                72% 22%,  
+                92% 68%,  
+                12% 78%,
+                85% 12%,
+                35% 85%,
+                78% 45%,
+                22% 52%; 
+            background-size: 200px, 180px, 220px, 200px, 150px, 170px, 190px, 160px;
+        }
+        .title {
+            text-align: center;
+            margin-top: -30px;
+            margin-bottom: -40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .title img {
+            width: 500px;
+            height: 100px;
+            object-fit: contain;
+            transform: scale(1.9);
+            transition: transform 0.3s ease;
+        }
+        .card {
+            position: relative;
+            padding: 0px;
+            display: block;
+            width: 520px;
+            height: 650px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            width: 100%;
+            max-width: 650px; 
+            height: 650px;
+            display: block;
+            margin: auto;
+            border-radius: 20px; 
+        }
+        .download-button {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #d63384, #a71d4a);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-family: Italianno;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(166, 29, 74, 0.4);
+            z-index: 10;
+        }
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(166, 29, 74, 0.6);
+            background: linear-gradient(135deg, #a71d4a, #d63384);
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #d63384, #a71d4a);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-family: Italianno;
+            font-size: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(166, 29, 74, 0.4);
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(166, 29, 74, 0.6);
+            background: linear-gradient(135deg, #a71d4a, #d63384);
+        }
+    </style>
+</head>
+<body>
+    <a href="yes.html" class="back-button">← Back</a>
+    <div class="title" >
+        <img src="images/doublecat.png" alt="title" >
+    </div>
+    <div class="card">
+        <img src="images/Letter.png" alt="letter template">
+        <button class="download-button" onclick="downloadImage()">⬇ Download</button>
+    </div>
+    <script>
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.href = 'images/Letter.jpg';
+            link.download = 'Letter.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our History</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
+    body {
+        background-color: #ffe6ea;
+        font-family: 'Italianno';
+        margin: 0;
+        padding: 20px;
+        color: #555;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 3.5rem;
+        color: #1a1a1a;
+        margin: 0px;
+        font-weight: 400;
+    }
+
+    .timeline {
+        position: relative;
+        max-width: 900px; 
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: #c0a3e5;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        border-radius: 4px;
+    }
+
+
+    .timeline-item {
+        padding: 10px 0;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        padding-top: 60px; 
+    }
+
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        top: 20px; 
+        width: 120px; 
+        height: 4px;
+        background-color: #c0a3e5;
+        z-index: 1;
+    }
+
+    .timeline-item::after {
+        content: "";
+        position: absolute;
+        top: 20px; 
+        height: 60px; 
+        width: 4px;
+        background-color: #c0a3e5;
+        z-index: 1;
+    }
+
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        align-items: flex-end; 
+        padding-right: 50px; 
+    }
+
+
+    .timeline-item:nth-child(odd)::before {
+        right: 0; 
+    }
+
+    
+    .timeline-item:nth-child(odd)::after {
+        right: 120px; 
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 50%;
+        align-items: flex-start; 
+        padding-left: 50px; 
+    }
+
+
+    .timeline-item:nth-child(even)::before {
+        left: 0;
+    }
+
+    .timeline-item:nth-child(even)::after {
+        left: 120px;
+    }
+
+
+    .content-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 140px; 
+        z-index: 2;
+        margin-top: -15px; 
+    }
+
+    .heart-icon {
+        width: 100px;
+        height: 100px;
+        background-color: #ffe6ea;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        z-index: 3;
+        display: block;
+        border-radius: 50%;
+    }
+
+    .heart-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .event-title {
+        font-size: 2rem;
+        margin-top: 10px;
+        margin-bottom: 0;
+        line-height: 1;
+        color: #1a1a1a;
+        text-align: center;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .modal-content {
+        background: linear-gradient(135deg, #fff5f8, #ffe6ea);
+        margin: 15% auto;
+        padding: 30px;
+        border-radius: 25px;
+        width: 80%;
+        max-width: 500px;
+        box-shadow: 0 10px 40px rgba(199, 21, 133, 0.3);
+        animation: slideIn 0.3s ease;
+        border: 2px solid #c0a3e5;
+        position: relative;
+        text-align: center;
+    }
+
+    @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-title {
+        color: #1a1a1a;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        font-family: 'Italianno';
+    }
+
+    .modal-text {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .modal-close {
+        color: #c0a3e5;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        line-height: 1;
+    }
+
+    .modal-close:hover {
+        color: #a71d4a;
+    }
+
+    .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: linear-gradient(135deg, #d63384, #a71d4a);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-family: Italianno;
+        font-size: 22px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(166, 29, 74, 0.4);
+        z-index: 10;
+    }
+
+    .back-button:hover {
+        transform: translateY(-2px);
+    }
+    
+    @media screen and (max-width: 600px) {
+        .timeline::before { left: 20px; } 
+        
+        .timeline-item { 
+            width: 100%; 
+            left: 0 !important;
+            align-items: flex-start !important;
+            padding-left: 60px; 
+        }
+        
+        .timeline-item::before {
+            left: 20px !important; 
+            width: 40px;
+        }
+        
+        .timeline-item::after {
+            left: 60px !important; 
+        }
+        
+        .content-box {
+            margin-left: -10px; 
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <a href="yes.html" class="back-button">← Back</a>
+    <h1>A little reminder of our history</h1>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <div class="content-box">
+                <img src="images/littlepurpleheartt.png" class="heart-icon" onclick="openModal('The Meeting', 'It was the day Open-day of the Clubs , we were there all of us and without knowing each other we were enjoying time and hanging out , trying to find food xd and then we were talking about groups and stuff and how you changed from med to this school and you were impressive and so interessting.')">
+                <h2 class="event-title">The Meeting</h2>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="content-box">
+                <img src="images/littlepurpleheartt.png" class="heart-icon" onclick="openModal('The Falling', 'It all started the day of tp bendouda and im thankful that your friend left that day so we had time together , and then after it the week after that we got to look at each other during algebra course , and we laughed , then we started sitting toggether and i started falling in love with you.')">
+                <h2 class="event-title">The Falling</h2>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="content-box">
+                <img src="images/littlepurpleheartt.png" class="heart-icon" onclick="openModal('First Date', 'Our first date was the day i planned for for too long , we went to ma9am echahid and then we tried teleferique for the first time and it was sooo fun then we went to mega-pizza and we ate a lot and we had fun the we went to tafourah for no reason and we passed by IF and we came back in the end of the day after enjoying our life hehe <3')">
+                <h2 class="event-title">First Date</h2>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="content-box">
+                <img src="images/littlepurpleheartt.png" class="heart-icon" onclick="openModal('Making Memories', 'We have been together for 1 year and 5 months and we have been making memories from the first day and we are known for that , and i love how we always spend time together even in random places just because we are bored and we enjoy the time when are toghether, So i hope we keep doing so and we keep making memories , taking pictures and listening to eachother stories. I love you so much and i hope we stay together forever <3')">
+                <h2 class="event-title">Making Memories</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-text" id="modalText"></p>
+        </div>
+    </div>
+
+    <script>
+    function openModal(title, text) {
+        const modal = document.getElementById('myModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        
+        modalTitle.textContent = title;
+        modalText.textContent = text;
+        modal.style.display = 'block';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('myModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            const modal = document.getElementById('myModal');
+            if (modal && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        }
+    });
+    </script>
+
+</body>
+</html>
