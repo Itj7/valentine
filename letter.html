@@ -19,14 +19,14 @@
             align-items: center;
             opacity: 1;
             background-image: 
-                url(/images/hearts.png),
-                url(/images/hearts.png),
-                url(/images/hearts.png),
-                url(/images/hearts.png),
-                url(/images/hearts.png),
-                url(/images/hearts.png),
-                url(/images/hearts.png),
-                url(/images/hearts.png);
+                url(images/hearts.png),
+                url(images/hearts.png),
+                url(images/hearts.png),
+                url(images/hearts.png),
+                url(images/hearts.png),
+                url(images/hearts.png),
+                url(images/hearts.png),
+                url(images/hearts.png);
             background-repeat: no-repeat;
             background-position: 
                 8% 15%,   
@@ -130,11 +130,12 @@
         function downloadImage() {
             const link = document.createElement('a');
             link.href = 'images/Letter.jpg';
-            link.download = 'Letter.jpg';
+            link.download = 'images/Letter.jpg';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
     </script>
 </body>
+
 </html>
